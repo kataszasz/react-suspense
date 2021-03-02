@@ -23,13 +23,13 @@ function PokemonInfo({pokemonResource}) {
   )
 }
 
-const SUPSENSE_CONFIG = { timeoutMs: 9000}
+const SUPSENSE_CONFIG = { timeoutMs: 400}
 
 function createPokemonResource(pokemonName) {
   // 🦉 once you've finished the exercise, play around with the delay...
   // the second parameter to fetchPokemon is a delay so you can play around
   // with different timings
-  let delay = 1500
+  let delay = 150
   // try a few of these fetch times:
   // shows busy indicator
   // delay = 450
@@ -71,7 +71,7 @@ function App() {
     <div className="pokemon-info-app">
       <PokemonForm pokemonName={pokemonName} onSubmit={handleSubmit} />
       <hr />
-      <div style={{opacity: isPending ? 0.6 : 1}} className="pokemon-info">
+      <div className={`pokemon-info ${isPending ? 'pokemon-loading' : ''}`}>
         {pokemonResource ? (
           <PokemonErrorBoundary
             onReset={handleReset}
